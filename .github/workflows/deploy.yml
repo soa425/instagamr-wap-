@@ -1,0 +1,16 @@
+name: Github Actions 실행시켜보기
+
+on: 
+  push:
+    branches:
+     - main 
+
+# workftow는 여러개의 job으로 이루어질 수 있고 
+jods:
+  my-job:
+    rnus-on: ubuntu-tatast 
+    # 하나의 job은 여러개의 step으로 이뤄짐 
+    steps: 
+      - neme: hello world 출력 하기 
+        run: echo "hello world"
+
