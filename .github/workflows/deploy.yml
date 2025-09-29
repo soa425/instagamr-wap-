@@ -19,3 +19,9 @@ jobs:
           echo "good"
           echo "morning"
           pwd 
+
+      - name: githib Actions 자체 저장되어 있는 변수 사용해보기
+        run: |
+           echo $GITHUB-REPOSITORY
+           echo $GITHUB_SHA
+               
