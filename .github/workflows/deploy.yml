@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. 저장소 파일 불러오기
+      # 1. GitHub 저장소 파일 불러오기
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -21,7 +21,7 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      # 4. AWS 인증 설정
+      # 4. AWS 인증 설정 (액세스 키 방식)
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -33,3 +33,15 @@ jobs:
       - name: Delete Existing S3 Files
         run: |
           aws s3 rm --recursive s3://instgamr
+
+      # 6. S3에 새 빌드 업로드
+      - name: Upload Build to S3
+        run: |
+          aws s3 cp ./dist s3://instgamr --recursive
+
+      # 7. CloudFront 캐시 무효화
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
