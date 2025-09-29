@@ -11,7 +11,20 @@ jobs:
     steps:
       - name: github Repository 파일불러오기
         uses: actions/checkout@v4
+    
+      - name: 의존성 설치 
+         run: npm i
 
-        - name: Repository 파일불러오기
+       - name: 빌드하기 
+          run: npm run boild 
+
+          name: Debugging 
+           run: | 
+             ls
+             cd dist 
+             ls
+
+        - name: Repository 파일출력하기
            run: ls 
            
+           name:
