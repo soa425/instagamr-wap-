@@ -6,11 +6,10 @@ on:
      - main 
 
 # workftow는 여러개의 job으로 이루어질 수 있고 
-jods:
+jobs:
   my-job:
-    rnus-on: ubuntu-tatast 
+    runs-on: ubuntu-latest
     # 하나의 job은 여러개의 step으로 이뤄짐 
     steps: 
-      - neme: hello world 출력 하기 
+      - name: hello world 출력 하기 
         run: echo "hello world"
-
